@@ -14,7 +14,7 @@
   ],
   "crons": [
     {
-      "path": "/index",
+      "path": "/run-colab",
       "schedule": "0 9 * * *"
     }
   ]
