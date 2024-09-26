@@ -16,7 +16,7 @@ def home():
         <h1>Welcome to the Colab Runner API</h1>
         <p>Current execution status: <strong>{execution_status['status']}</strong></p>
         <p>Details: {execution_status['details']}</p>
-        <p>To trigger the Colab notebook, visit <a href='/api/run-colab'>/api/run-colab</a></p>
+        <p>To trigger the Colab notebook, visit <a href='/run-colab'>/run-colab</a></p>
     """
     
     
