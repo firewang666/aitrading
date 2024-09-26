@@ -26,9 +26,10 @@ def run_colab():
     try:
         execution_status['status'] = "Running"
         execution_status['details'] = "Colab notebook is being executed."
-        gdown.download('https://colab.research.google.com/drive/1q9xxQMu4r2rXtXfbFT98CPAOpSUba05Z?usp=sharing', 'colab.ipynb', quiet=False)
+        output = "/tmp/notebook.ipynb" 
+        gdown.download('https://colab.research.google.com/drive/1q9xxQMu4r2rXtXfbFT98CPAOpSUba05Z?usp=sharing', output, quiet=False)
         # 执行 Colab 文档（你可以选择用 nbconvert 或其他工具运行）
-        result = subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', 'colab.ipynb'], capture_output=True, text=True)
+        result = subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', output], capture_output=True, text=True)
         if result.returncode == 0:
             execution_status['status'] = "Success"
             execution_status['details'] = "Notebook executed successfully."
