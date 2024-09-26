@@ -27,7 +27,7 @@ def run_colab():
         execution_status['status'] = "Running"
         execution_status['details'] = "Colab notebook is being executed."
         output = "/tmp/notebook.py" 
-        gdown.download('https://colab.research.google.com/drive/1q9xxQMu4r2rXtXfbFT98CPAOpSUba05Z', output, quiet=False)
+        gdown.download('https://drive.google.com/uc?id=1_V80bvA4QnKGTCJmSQaoNeDxpN1C5eMv', output, quiet=False)
         # 执行 Colab 文档（你可以选择用 nbconvert 或其他工具运行）
         result = subprocess.run(['python3', output], capture_output=True, text=True)
 
