@@ -2,3 +2,4 @@ Flask
 gdown
 jupyter
 papermill
+ipykernel
