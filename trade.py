@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 import os
 import gdown
-import subprocess
+import papermill as pm
 app = Flask(__name__)
 
 execution_status = {
@@ -29,15 +29,13 @@ def run_colab():
         output = "/tmp/notebook.ipynb" 
         gdown.download('https://colab.research.google.com/drive/1q9xxQMu4r2rXtXfbFT98CPAOpSUba05Z?usp=sharing', output, quiet=False)
         # 执行 Colab 文档（你可以选择用 nbconvert 或其他工具运行）
-        result = subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', output], capture_output=True, text=True)
-        if result.returncode == 0:
-            execution_status['status'] = "Success"
-            execution_status['details'] = "Notebook executed successfully."
-            return jsonify({"message": "Colab notebook executed successfully!", "output": result.stdout})
-        else:
-            execution_status['status'] = "Failed"
-            execution_status['details'] = result.stderr
-            return jsonify({"error": "Failed to execute notebook", "details": result.stderr}), 500
+        pm.execute_notebook(
+            output,
+            '/tmp/notebook_output.ipynb'
+        )
+        execution_status['status'] = "Success"
+        execution_status['details'] = "Notebook executed successfully."
+        return jsonify({"message": "Colab notebook executed successfully!"})
 
     except Exception as e:
         execution_status['status'] = "Error"
